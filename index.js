@@ -2,14 +2,22 @@ const express=require('express');
 const server=express();
 const mongoose=require('mongoose');
 const { createProduct } = require('./controller/Product');
+const cors=require('cors')
 
 const productsRouter=require('./routes/Products')
-
+const categoriesRouter=require('./routes/Category')
+const brandsRouter=require('./routes/Brand')
+server.use(cors(
+    {
+        exposedHeaders:['X-Total-Count']
+    }
+))
 server.use(express.json())//to parse req.body
 
 //middleware
 server.use('/products',productsRouter.router)
-
+server.use('/categories',categoriesRouter.router)
+server.use('/brands',brandsRouter.router)
 //dbconnection
 main().catch(err=>console.log(err))
 
