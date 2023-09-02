@@ -7,6 +7,8 @@ const cors=require('cors')
 const productsRouter=require('./routes/Products')
 const categoriesRouter=require('./routes/Category')
 const brandsRouter=require('./routes/Brand')
+const authRouter=require('./routes/Auth')
+const usersRouter=require('./routes/User')
 server.use(cors(
     {
         exposedHeaders:['X-Total-Count']
@@ -18,6 +20,8 @@ server.use(express.json())//to parse req.body
 server.use('/products',productsRouter.router)
 server.use('/categories',categoriesRouter.router)
 server.use('/brands',brandsRouter.router)
+server.use('/auth',authRouter.router)
+server.use('/users',usersRouter.router)
 //dbconnection
 main().catch(err=>console.log(err))
 
